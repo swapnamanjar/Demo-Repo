@@ -1,0 +1,14 @@
+#This playbook will install HTTP server and start the server
+---
+- hosts: webserver
+  become: true
+  tasks: 
+    - name: install apache HTTP server
+      yum: name=httpd update_cache=yes state=latest
+    - name: Start HTTP server
+      service: name=httpd enabled=yes state=started
+    - name: Insert indexpage
+      template:
+        src: index.html
+        dest: /var/www/html/index.html
+ ---
