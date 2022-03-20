@@ -40,7 +40,7 @@ steps:
   displayName: 'Deploy Azure Web App'
   inputs:
     azureSubscription: '8faef03f-5832-43cb-8833-0e84dc8bbd7b'
-    appName: newapp
+    appName: e78a83ef-b289-4933-aa46-bf9bb5745cfb
     appType: 'webApp'
     package: $(Build.ArtifactStagingDirectory)/**/*.zip
 
