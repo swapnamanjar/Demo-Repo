@@ -11,7 +11,7 @@ pool:
 
 variables:
   BuildConfiguration: 'Release'
-  SolutionPath: 'YOUR_SOLUTION_FOLDER/YOUR_SOLUTION.sln'
+  SolutionPath: '**/*.sln'
 
 steps:
 # Optional: 'dotnet restore' is not necessary because the 'dotnet build' command executes restore as well.
@@ -39,8 +39,8 @@ steps:
 - task: AzureWebApp@1
   displayName: 'Deploy Azure Web App'
   inputs:
-    azureSubscription: '<REPLACE_WITH_AZURE_SUBSCRIPTION_INFO>'
-    appName: <REPLACE_WITH_EXISTING_APP_SERVICE_NAME>
+    azureSubscription: '8faef03f-5832-43cb-8833-0e84dc8bbd7b'
+    appName: newapp
     appType: 'webApp'
     package: $(Build.ArtifactStagingDirectory)/**/*.zip
 
