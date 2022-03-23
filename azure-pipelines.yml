@@ -1,49 +1,26 @@
-# ASP.NET Core
-# Build and test ASP.NET Core projects targeting .NET Core.
-# Add steps that run tests, create a NuGet package, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
-
-name : NetCore-CustomerApi-CI
-trigger:
-  branches:
-    include:
-      - master
-  paths:
-    include:
-      - CustomerApi/*
- 
-pool:
-  vmImage: 'ubuntu-latest'
- 
-variables:
-  buildConfiguration: 'Release'
- 
-steps:
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-    projects: '**/CustomerApi*.csproj'
-  displayName: 'Restore Nuget Packages'
- 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: '**/CustomerApi*.csproj'
-    arguments: '--no-restore'
-  displayName: 'Build projects'
- 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'test'
-    projects: '**/*Test.csproj'
-    arguments: '--no-restore --no-build'
-  displayName: 'Run Tests'
- 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'publish'
-    publishWebProjects: false
-    projects: '**/CustomerApi.csproj'
-    arguments: '--configuration $(buildConfiguration) --no-restore'
-    modifyOutputPath: false
-  displayName: 'Publish CustomerApi'
+#This playbook will install HTTP server and start the server
+---
+- name: install tomcat server
+  hosts: webserver
+  become: true
+  vars:
+    - tomcat_url: https://mirrors.estointernet.in/apache/tomcat/tomcat-10/v10.0.18/bin/apache-tomcat-10.0.18.tar.gz
+    - tomcat_package: apache-tomcat-10.0.18
+  tasks:
+  - name: install java
+    yum: 
+      name: java
+      state: latest
+	  
+  - name: download tomcat server package
+    get_url:  
+        url: "{{ tomcat_url }}"
+        dest: /usr/local
+  - name: extarct tomcat package
+    unarchieve:
+       src: /usr/local/{{tomcat_package}}.tar.gz
+       dest: /usr/local
+       remote_src: yes
+	   
+  - name: start tomcat process
+    shell: nohup /usr/local/{{ tomcat_package }}/bin/startup.sh
