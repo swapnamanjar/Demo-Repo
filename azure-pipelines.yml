@@ -9,8 +9,8 @@
   tasks:
   - name: install java
     yum: 
-      name: java
-      state: latest
+       name: java
+       state: latest
 	  
   - name: download tomcat server package
     get_url:  
