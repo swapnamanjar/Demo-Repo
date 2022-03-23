@@ -15,6 +15,7 @@
     get_url:  
         url: "{{ tomcat_url }}"
         dest: /usr/local
+        
   - name: extarct tomcat package
     unarchieve:
         src: /usr/local/{{tomcat_package}}.tar.gz
