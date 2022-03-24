@@ -15,7 +15,7 @@
         url: "{{ tomcat_url }}"
         dest: /usr/local
   - name: extarct tomcat package
-    unarchieve:
+    unarchieve: 
         src: /usr/local/{{tomcat_package}}.tar.gz
         dest: /usr/local
         remote_src: yes 
