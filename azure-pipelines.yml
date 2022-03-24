@@ -19,6 +19,5 @@
       src: /usr/local/{{tomcat_package}}.tar.gz
       dest: /usr/local
       remote_src: yes
-	   
   - name: start tomcat process
     shell: nohup /usr/local/{{ tomcat_package }}/bin/startup.sh
