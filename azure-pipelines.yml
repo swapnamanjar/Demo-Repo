@@ -12,7 +12,7 @@
       state: latest
   - name: download tomcat server package
     get_url: 
-      url: "{{tomcat_url}}"
+      url: "{{ tomcat_url }}"
       dest: /usr/local
   - name: extarct tomcat package
     unarchieve:
