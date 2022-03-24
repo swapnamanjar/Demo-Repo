@@ -15,7 +15,7 @@
         url: "{{ tomcat_url }}"
         dest: /usr/local
   
-  - name: tomcat pack
+  
     unarchieve: 
          src: /usr/local/{{tomcat_package}}.tar.gz
          dest: /usr/local
