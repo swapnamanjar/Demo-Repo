@@ -11,7 +11,7 @@
       name: java
       state: latest
       
-  - name: pack
+  
     get_url: 
         url: "{{ tomcat_url }}"
         dest: /usr/local
